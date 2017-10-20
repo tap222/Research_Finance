@@ -86,3 +86,31 @@ df8<- df$Beta.7
 df9<- df$Beta.8
 df10<- df$Beta.9
 
+##To Convert Data
+
+# Lets say I have a dataframe , df as following -
+#df <- data.frame(a=c(2,3,-4,0,5,0),b=c(1,-2,3,4,0,0))
+df<- read.csv('steel_final.csv')
+df$Company.Name<-NULL
+
+df <- df[which(df$ROE >= 0),]
+df <- df[which(df$ROC >= 0),]
+df <- df[which(df$NPM >= 0),]
+df <- df[which(df$DIV >= 0),]
+df <- df[which(df$DEP >= 0),]
+df <- df[which(df$Beta >= 0),]
+df <- df[which(df$P.B >= 0),]
+df <- df[which(df$EVEBITDA >= 0),]
+df <- df[which(df$PSALES >= 0),]
+
+# create a custom function
+fillwithMean <- function(x){
+  na_index <- which(x == 0.00)        
+  mean_x <- mean(x, na.rm=T)
+  x[na_index] <- mean_x
+  return(x)
+}
+
+df_t <- data.frame(apply(df,2,fillwithMean))
+View(df_t)
+
