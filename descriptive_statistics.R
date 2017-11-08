@@ -1,0 +1,6 @@
+l <- describe(bank)
+write.csv(l,file= 'desc_bank.csv',row.names = FALSE)
+t <- describe(auto)
+write.csv(t,file= 'desc_auto.csv',row.names = FALSE)
+z <- describe(steel)
+write.csv(z,file= 'desc_steel.csv',row.names = FALSE)
